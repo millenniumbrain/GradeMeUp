@@ -6,46 +6,10 @@
         xmlns:local="clr-namespace:GradeMeUp"
         mc:Ignorable="d"
         Title="GradeMeUp" Height="450" Width="800">
-    <Grid>
-        <TabControl>
-            <TabItem Header="General"></TabItem>
-            <TabItem Header="Assignments">
-                <Grid ShowGridLines="True">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Button Width="64" Height="24" HorizontalAlignment="Right" IsEnabled="False">Apply</Button>
-                    <TabControl Grid.Row="1" TabStripPlacement="Left">
-                        <TabControl.Resources>
-                            <Style TargetType="{x:Type TabItem}">
-                                <Setter Property="HeaderTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <ContentPresenter Content="{TemplateBinding Content}">
-                                                <ContentPresenter.LayoutTransform>
-                                                    <RotateTransform Angle="270"/>
-                                                </ContentPresenter.LayoutTransform>
-                                            </ContentPresenter>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Padding" Value="5" />
-                            </Style>
-                        </TabControl.Resources>
-                        <TabItem Header="All Courses">
-                            <DataGrid x:Name="allCourses" CanUserAddRows="True" SelectionChanged="allCourses_SelectionChanged">
-                            </DataGrid>
-                        </TabItem>
-                        <TabItem Header="CSET4250"></TabItem>
-                    </TabControl>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Attendance"></TabItem>
-            <TabItem Header="Students"></TabItem>
-        </TabControl>
-    </Grid>
+    <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792">
+        <TabItem Header="Home">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+        <TabItem Header="Students"/>
+    </TabControl>
 </Window>

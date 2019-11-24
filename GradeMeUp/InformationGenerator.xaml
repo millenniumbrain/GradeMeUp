@@ -1,0 +1,16 @@
+﻿<Window x:Class="GradeMeUp.InformationGenerator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GradeMeUp"
+        mc:Ignorable="d"
+        Title="Information Generator" Height="450" Width="478.793">
+    <Grid>
+        <Button x:Name="button" Content="Create Students" HorizontalAlignment="Left" Margin="177,175,0,0" VerticalAlignment="Top" Width="123" Click="button_Click" Height="39" RenderTransformOrigin="0.49,-0.185"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Center" Height="23" Margin="112,10,120,0" TextWrapping="Wrap" Text="Grade Me Up Test Information Generator" VerticalAlignment="Top" Width="239"/>
+        <Button x:Name="button_Copy" Content="Create Assignments" HorizontalAlignment="Left" Margin="177,265,0,0" VerticalAlignment="Top" Width="123" Click="button_Click" Height="39"/>
+        <Button x:Name="button_Copy1" Content="Create Courses" HorizontalAlignment="Left" Margin="177,80,0,0" VerticalAlignment="Top" Width="123" Click="button_Click" Height="44" RenderTransformOrigin="1.8,-0.621"/>
+
+    </Grid>
+</Window>
