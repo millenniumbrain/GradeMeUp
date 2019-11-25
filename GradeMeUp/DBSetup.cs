@@ -18,7 +18,7 @@ namespace GradeMeUp
                 File.ReadAllText("../../scripts/courses.sql"),
                 File.ReadAllText("../../scripts/students.sql"),
                 File.ReadAllText("../../scripts/assignments.sql"),
-                File.ReadAllText("../../scripts/assignment_types.sql")
+                File.ReadAllText("../../scripts/courses_students.sql")
             };
 
             if (!File.Exists(filePath))
@@ -31,17 +31,23 @@ namespace GradeMeUp
                     DB.Open();
                     foreach(var script in migrationScripts)
                     {
-                        var command = new SQLiteCommand(script, DB);
-                        var rows = command.ExecuteNonQuery();
+                        using (var command = new SQLiteCommand(script, DB))
+                        {
+                            var rows = command.ExecuteNonQuery();
+                            Trace.WriteLine($"Row(s) affected: {rows}");
+                        }
 
-                        Trace.WriteLine($"Row(s) affected: {rows}");
 
                     }
                 }
                 
-            } else
+            } 
+            else
             {
+                File.Delete(filePath);
+
                 Trace.WriteLine("Creating DB file....");
+                SQLiteConnection.CreateFile(filePath);
 
                 using (var DB = new SQLiteConnection(connection))
                 {

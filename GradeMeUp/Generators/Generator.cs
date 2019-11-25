@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GradeMeUp
+namespace GradeMeUp.Generators
 {
-    class GenerateAssignments
+    public class Generator
     {
     }
 }

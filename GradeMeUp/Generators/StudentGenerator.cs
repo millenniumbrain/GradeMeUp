@@ -8,13 +8,18 @@ using GradeMeUp.Models;
 
 namespace GradeMeUp.Generators
 {
-    public class StudentsGenerator
+    public class StudentGenerator
     {
+        public long RandomizerSeed { get; set; }
+        public SQLiteConnection Connection { get; set; }
 
-        public static bool Generate(int numStudents = 1, int gender = 0, string dbConnection = "courses.sqlite")
+        public StudentGenerator(SQLiteConnection connection)
         {
-            Randomizer.Seed = new Random(8675309);
+            Connection = new SQLiteConnection(connection);
+        }
 
+        public void Generate(int numStudents = 1, int gender = 0)
+        {
             var students = new List<Student>();
             for (var i = 0; i < numStudents; i++)
             {
@@ -26,7 +31,6 @@ namespace GradeMeUp.Generators
                 students.Add(student.Generate());
             }
 
-            var connection = $"Data Source={dbConnection}";
             foreach (var student in students)
             {
                 var row = new Dictionary<string, object>
@@ -36,9 +40,10 @@ namespace GradeMeUp.Generators
                     { nameof(student.Gender), student.Gender }
                 };
 
-                Student.Insert(row);
+                var DB = new DBConnection(Connection);
+
+                DB.Table("Students").Insert(row);
             }
-            return false;
         }
     }
 }

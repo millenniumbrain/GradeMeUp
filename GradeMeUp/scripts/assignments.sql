@@ -1,10 +1,12 @@
-﻿CREATE TABLE IF NOT EXISTS assignments (
+﻿CREATE TABLE IF NOT EXISTS Assignments (
 	ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	"Name" VARCHAR(255),
 	PointsPossible INT,
-	Points INT,
+	Grade INT,
 	StudentID INTEGER,
-	AssignmentTypeID INTEGER,
+	CourseID INTEGER,
+	AssignmentType INTEGER,
 	FOREIGN KEY(StudentID) REFERENCES students(ID),
-	FOREIGN KEY(AssignmentTypeID) REFERENCES assignment_types(ID)
+	FOREIGN KEY(CourseID) REFERENCES courses(ID)
+	--FOREIGN KEY(AssignmentTypeID) REFERENCES assignment_types(ID)
 );

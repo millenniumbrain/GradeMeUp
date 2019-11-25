@@ -16,55 +16,48 @@ namespace GradeMeUp.Models
         public Gender Gender { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public long CourseID { get; set; }
+        public List<Assignment> Assignments { get; set; }
+        public List<Course> Courses { get; set; }
 
-        public List <Assignment> Assignments { get; set; }
-
-        public Student()
+        public static List<Student> All()
         {
-        }
-
-        public static bool Insert(Dictionary<string, object> insertValues)
-        {
-            string insertString = "INSERT INTO students";
-            string columns = "(";
-            string values = "VALUES(";
-
-            var i = 0;
-            foreach (var entry in insertValues)
-            {
-                columns += $"{entry.Key},";
-                if (entry.Value is string) 
-                {
-                    values += $"'{entry.Value}',";
-                } else
-                {
-                    values += $"'{entry.Value}',";
-
-                }
-                i++;
-                if (insertValues.Count() == i)
-                {
-                    columns = columns.Remove(columns.Length - 1);
-                    columns += ")";
-                    values = values.Remove(values.Length - 1);
-                    values += ")";
-                }               
-            }
-
-            insertString = $"{insertString}{columns}{values};";
-
             var connection = $"Data Source=courses.sqlite";
+            string allStudents = "SELECT * FROM students";
 
             using (var DB = new SQLiteConnection(connection))
             {
                 DB.Open();
-                var command = new SQLiteCommand(insertString, DB);
+                var students = new List<Student>();
 
-                command.ExecuteNonQuery();
+                using (var command = new SQLiteCommand(allStudents, DB))
+                {
+                    var result = command.ExecuteReader();
+
+
+                    while (result.Read())
+                    {
+                        var student = new Student();
+                        student.ID = (long)result[nameof(student.ID)];
+                        student.FirstName = result[nameof(student.FirstName)].ToString();
+                        student.LastName = result[nameof(student.LastName)].ToString();
+
+                        if (DateTime.TryParse(result[nameof(student.CreatedAt)].ToString(), out DateTime createdAt))
+                        {
+                            student.CreatedAt = createdAt;
+                        }
+
+                        if (DateTime.TryParse(result[nameof(student.UpdatedAt)].ToString(), out DateTime updatedAt))
+                        {
+                            student.UpdatedAt = updatedAt;
+                        }
+
+                        students.Add(student);
+                    }
+ 
+                }
+
+                return students;
             }
-
-            return false;
         }
     }
 }

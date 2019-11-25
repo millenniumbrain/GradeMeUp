@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:GradeMeUp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Name="RotatedColumnHeader" TargetType="DataGridColumnHeader">
+<!--        <Style x:Name="RotatedColumnHeader" TargetType="DataGridColumnHeader">
             <Setter Property="ContentTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -17,6 +17,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+-->
     </Application.Resources>
 </Application>
