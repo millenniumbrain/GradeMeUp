@@ -29,11 +29,11 @@ namespace GradeMeUp.Generators
             {
                 var assignment = new Faker<Assignment>()
                                     .RuleFor(a => a.Name, f => f.Lorem.Word())
-                                    .RuleFor(a => a.Grade, f => f.Random.Int(0, 100).OrNull(f, .5f))
+                                    .RuleFor(a => a.Grade, f => f.Random.Int(0, 100))
                                     .RuleFor(a => a.PointsPossible, f => f.Random.Int(5, 100))
-                                    .RuleFor(a => a.AssignmentType, f => f.PickRandom<AssignmentType>())
-                                    .RuleFor(a => a.StudentID, f => f.Random.Long(1, 10).OrNull(f, .5f))
-                                    .RuleFor(a => a.CourseID, f => f.Random.Long(1, 10).OrNull(f, .5f))
+                                    .RuleFor(a => a.AssignmentType, f => f.Random.Int(1, 4))
+                                    .RuleFor(a => a.StudentID, f => f.Random.Long(1, 10))
+                                    .RuleFor(a => a.CourseID, f => f.Random.Long(1, 10))
                                     .FinishWith((f, s) => Trace.WriteLine("Assignment Created!"));
                 assignments.Add(assignment.Generate());
             }

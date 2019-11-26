@@ -24,7 +24,7 @@ namespace GradeMeUp.Generators
             for (var i = 0; i < numStudents; i++)
             {
                 var student = new Faker<Student>()
-                                .RuleFor(s => s.Gender, f => f.PickRandom<Gender>())
+                                .RuleFor(s => s.Gender, f => f.Random.Int(0, 1))
                                 .RuleFor(s => s.FirstName, (f, s) => f.Name.FirstName((Name.Gender)s.Gender))
                                 .RuleFor(s => s.LastName, (f, s) => f.Name.LastName((Name.Gender)s.Gender))
                                 .FinishWith((f, s) => Trace.WriteLine("Student Created!"));

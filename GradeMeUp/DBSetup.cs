@@ -15,10 +15,10 @@ namespace GradeMeUp
         {
             var connection = $"Data Source={filePath}";
             var migrationScripts = new List<string>() {
-                File.ReadAllText("../../scripts/courses.sql"),
-                File.ReadAllText("../../scripts/students.sql"),
-                File.ReadAllText("../../scripts/assignments.sql"),
-                File.ReadAllText("../../scripts/courses_students.sql")
+                File.ReadAllText("../../Scripts/courses.sql"),
+                File.ReadAllText("../../Scripts/students.sql"),
+                File.ReadAllText("../../Scripts/assignments.sql"),
+                File.ReadAllText("../../Scripts/courses_students.sql")
             };
 
             if (!File.Exists(filePath))
@@ -44,8 +44,6 @@ namespace GradeMeUp
             } 
             else
             {
-                File.Delete(filePath);
-
                 Trace.WriteLine("Creating DB file....");
                 SQLiteConnection.CreateFile(filePath);
 

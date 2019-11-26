@@ -13,11 +13,17 @@ namespace GradeMeUp.Models
         public long ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Gender Gender { get; set; }
+        public string FullName { get { return $"{FirstName} {LastName}"; } }
+        public int Gender { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public List<Assignment> Assignments { get; set; }
         public List<Course> Courses { get; set; }
+
+        public List<Course> GetCourses()
+        {
+            return null;
+        }
 
         public static List<Student> All()
         {

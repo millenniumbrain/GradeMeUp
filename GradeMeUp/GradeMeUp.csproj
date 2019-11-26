@@ -93,6 +93,7 @@
     <Compile Include="Generators\CourseGenerator.cs" />
     <Compile Include="Generators\StudentGenerator.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseStudents.cs" />
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Models\Student.cs" />
     <Page Include="InformationGenerator.xaml">
@@ -140,11 +141,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="scripts\assignments.sql" />
-    <Content Include="scripts\courses_students.sql" />
-    <Content Include="scripts\assignment_types.sql" />
-    <Content Include="scripts\courses.sql" />
-    <Content Include="scripts\students.sql" />
+    <Content Include="Scripts\assignments.sql" />
+    <Content Include="Scripts\courses_students.sql" />
+    <Content Include="Scripts\assignment_types.sql" />
+    <Content Include="Scripts\courses.sql" />
+    <Content Include="Scripts\students.sql" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.7\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />

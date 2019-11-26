@@ -13,7 +13,7 @@ namespace GradeMeUp
         public string Name { get; set; }
         public int? Grade { get; set; }
         public int PointsPossible { get; set; }
-        public AssignmentType AssignmentType { get; set; }
+        public int AssignmentType { get; set; }
         public long? StudentID { get; set; }
         public long? CourseID { get; set; }
 
@@ -41,13 +41,21 @@ namespace GradeMeUp
                         {
                             assignment.Grade = (int)result[nameof(assignment.Grade)];
                         }
+                        else
+                        {
+                            assignment.Grade = (int)result[nameof(assignment.Grade)];
+                        }
 
                         if (result[nameof(assignment.PointsPossible)] == DBNull.Value)
+                        {
+                            assignment.PointsPossible = 0;
+                        }
+                        else
                         {
                             assignment.PointsPossible = (int)result[nameof(assignment.PointsPossible)];
                         }
 
-                        assignment.AssignmentType = (AssignmentType)result[nameof(assignment.AssignmentType)];
+                        assignment.AssignmentType  = Convert.ToInt32(result[nameof(assignment.AssignmentType)].ToString());
 
                         assignments.Add(assignment);
                     }
