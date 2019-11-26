@@ -58,7 +58,7 @@ namespace GradeMeUp
             }
             
             StudentsCourseListView.ItemsSource = courses;
-            StudentsCourseListView.SizeChanged += new System.Windows.SizeChangedEventHandler(StudentsListView_SizeChanged);
+            //StudentsCourseListView.SizeChanged += new System.Windows.SizeChangedEventHandler(StudentsListView_SizeChanged);
 
             AssignmentsListView.ItemsSource = assignments;
             AssignmentsListView.SizeChanged += new System.Windows.SizeChangedEventHandler(AssignmentsListView_SizeChanged);

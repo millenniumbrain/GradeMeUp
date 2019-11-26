@@ -33,7 +33,7 @@
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition x:Name="StudentsListContainer" Height="9.3*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 1 0">
+                    <Border BorderBrush="DarkGray" BorderThickness="0 0 1.5 0">
                         <Label Grid.Row="0" Grid.Column="0" x:Name="label" Content="Students" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  VerticalAlignment="Center"/>
                     </Border>
                     <ListBox Grid.Row="1" Grid.Column="0" x:Name="StudentsListBoxView" ItemsSource="{Binding}" ItemTemplate="{StaticResource StudentFullName}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="Auto">
@@ -53,7 +53,7 @@
                         <RowDefinition Height="9*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" x:Name="labels" Content="Assignments" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"  VerticalAlignment="Top"/>
-                    <ListView x:Name="StudentsCourseListView" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListView x:Name="StudentsCourseListView" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" SizeChanged="StudentsListView_SizeChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="100" DisplayMemberBinding="{Binding ID}" Header="Course ID"/>
