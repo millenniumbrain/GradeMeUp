@@ -28,8 +28,12 @@ namespace GradeMeUp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CancellationTokenSource CancellationToken;
-        private readonly TimeSpan DoublClickDelay = TimeSpan.FromSeconds(0.2);
+
+        private class AssignmentTypeListItem
+        {
+            public int AssigntmentType { get; set; }
+            public string AssignmentTypeName { get; set; }
+        }
 
         public MainWindow()
         {
@@ -41,95 +45,88 @@ namespace GradeMeUp
             var DB = new SQLiteConnection(writeConnection);
 
             var newStudents = new StudentGenerator(DB);
-            newStudents.Generate(10);
             var newCourses = new CourseGenerator(DB);
-            newCourses.Generate(10);
             var newAssignments = new AssignmentGenerator(DB);
+            var newCourseStudents = new CourseStudentGenerator(DB);
+
+            
+            newCourses.Generate(10);
+            newStudents.Generate(10);
             newAssignments.Generate(10);
+            newCourseStudents.Generate(10);
 
             var students = Student.All();
             var courses = Course.All();
             var assignments = Assignment.All();
 
             StudentsListBoxView.ItemsSource = students;
+
             foreach (var course in courses)
             {
                 course.CalculateGrades();
             }
-            
             StudentsCourseListView.ItemsSource = courses;
-            //StudentsCourseListView.SizeChanged += new System.Windows.SizeChangedEventHandler(StudentsListView_SizeChanged);
 
             AssignmentsListView.ItemsSource = assignments;
-            AssignmentsListView.SizeChanged += new System.Windows.SizeChangedEventHandler(AssignmentsListView_SizeChanged);
         }
 
-        private void StudentListView_LeftClick(object sender, MouseButtonEventArgs e)
+        private void StudentsListView_DoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.ClickCount == 1)
-            {
-                try
-                {
-                    CancellationToken = new CancellationTokenSource();
-                    var token = CancellationToken.Token;
+            var studentsListBox = e.Source as ListBoxItem;
+            var item = ((FrameworkElement)e.OriginalSource).DataContext as Student;
+        }
 
-                    Task.Run(async () =>
-                    {
-                        await Task.Delay(DoublClickDelay, token);
+        private void StudentsListView_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            var student = ((FrameworkElement)e.OriginalSource).DataContext as Student;
+            StudentsCourseListView.ItemsSource = student.Courses;
+        }
 
-                        Trace.WriteLine("Single Click");
-                    }, token);
-                }
-                catch (TaskCanceledException)
-                {
-
-                }
-
-                return;
-
-
-            } 
-
-            if (CancellationToken != null)
-            {
-                CancellationToken.Cancel();
-            }
-            //var studentsListBox = e.Source as ListBoxItem;
-            //var item = ((FrameworkElement)e.OriginalSource).DataContext as Student;
-            //Trace.WriteLine($"The students LEFT CLICK name is: {item.FirstName}");
-            Trace.WriteLine("Double Click occured.");
+        private void AssignmentsListView_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            var assignmentTypeItem = e.Source as ListBoxItem;
+            var assignmentType = Convert.ToInt32(assignmentTypeItem.Tag.ToString());
+            var assignments = Assignment.GetAssignmentsByType(assignmentType);
+            AssignmentsListView.ItemsSource = assignments;
         }
 
         private void StudentsListView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ListView listView = sender as ListView;
-            GridView gView = listView.View as GridView;
+            var listView = sender as ListView;
+            var gridView = listView.View as GridView;
 
-            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; // take into account vertical scrollbar
+            // take into account vertical scrollbar
+            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth;
             var col1 = 0.10;
             var col2 = 0.40;
             var col3 = 0.15;
             var col4 = 0.15;
 
-            gView.Columns[0].Width = workingWidth * col1;
-            gView.Columns[1].Width = workingWidth * col2;
-            gView.Columns[2].Width = workingWidth * col3;
-            gView.Columns[3].Width = workingWidth * col4;
+            gridView.Columns[0].Width = workingWidth * col1;
+            gridView.Columns[1].Width = workingWidth * col2;
+            gridView.Columns[2].Width = workingWidth * col3;
+            gridView.Columns[3].Width = workingWidth * col4;
         }
 
         private void AssignmentsListView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ListView listView = sender as ListView;
-            GridView gView = listView.View as GridView;
+            var listView = sender as ListView;
+            var gridView = listView.View as GridView;
 
-            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; // take into account vertical scrollbar
+            // take into account vertical scrollbar
+            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; 
             var col1 = 0.70;
             var col2 = 0.15;
             var col3 = 0.15;
 
-            gView.Columns[0].Width = workingWidth * col1;
-            gView.Columns[1].Width = workingWidth * col2;
-            gView.Columns[2].Width = workingWidth * col3;
+            gridView.Columns[0].Width = workingWidth * col1;
+            gridView.Columns[1].Width = workingWidth * col2;
+            gridView.Columns[2].Width = workingWidth * col3;
+        }
+
+        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -17,7 +17,7 @@
             </Grid>
         </TabItem>
         <TabItem Header="Students">
-            <Grid x:Name="StudentsView" Background="#FFE5E5E5" Margin="-2,-3,-2,0">
+            <Grid x:Name="StudentsView" Background="#FFE5E5E5" Margin="-2,-2,-2,-2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="8*"></ColumnDefinition>
@@ -36,10 +36,19 @@
                     <Border BorderBrush="DarkGray" BorderThickness="0 0 1.5 0">
                         <Label Grid.Row="0" Grid.Column="0" x:Name="label" Content="Students" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  VerticalAlignment="Center"/>
                     </Border>
-                    <ListBox Grid.Row="1" Grid.Column="0" x:Name="StudentsListBoxView" ItemsSource="{Binding}" ItemTemplate="{StaticResource StudentFullName}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="Auto">
+                    <ListBox Grid.Row="1" 
+                             Grid.Column="0" 
+                             x:Name="StudentsListBoxView" 
+                             ItemsSource="{Binding}" 
+                             ItemTemplate="{StaticResource StudentFullName}" 
+                             HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" 
+                             VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                             Height="Auto"
+                             >
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="StudentListView_LeftClick"></EventSetter>
+                                <EventSetter Event="MouseDoubleClick" Handler="StudentsListView_DoubleClick"></EventSetter>
+                                <EventSetter Event="Selected" Handler="StudentsListView_SelectionChanged"></EventSetter>
                             </Style>
                         </ListBox.ItemContainerStyle>
                     </ListBox>
@@ -70,15 +79,47 @@
             
         </TabItem>
         <TabItem Header="All Assignments">
-            <ListView x:Name="AssignmentsListView" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding AssignmentType}" Header="Assignment Type"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding PointsPossible}" Header="Points Possible"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="AssignmentTypesList" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <EventSetter Event="Selected" Handler="AssignmentsListView_SelectionChanged"></EventSetter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBoxItem Tag="0">
+                        <TextBlock>All Assignments</TextBlock>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="1">
+                        <TextBlock>Homework</TextBlock>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="2">
+                        <TextBlock>Quizzes</TextBlock>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="3">
+                        <TextBlock>Tests</TextBlock>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="4">
+                        <TextBlock>Extra Credit</TextBlock>
+                    </ListBoxItem>
+                </ListBox>
+                <ListView Grid.Row="0" Grid.Column="1" x:Name="AssignmentsListView" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" SizeChanged="AssignmentsListView_SizeChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding DisplayAssignmentType}" Header="Assignment Type"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding PointsPossible}" Header="Points Possible"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
         </TabItem>
     </TabControl>
 </Window>

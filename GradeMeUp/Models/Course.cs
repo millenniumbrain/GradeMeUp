@@ -86,6 +86,33 @@ namespace GradeMeUp.Models
             }
         }
 
+        public static Course Find(long id)
+        {
+            var connection = $"Data Source=courses.sqlite";
+            var courseSQL = $"SELECT * FROM Courses WHERE ID = {id}";
+
+            using (var DB = new SQLiteConnection(connection))
+            {
+                DB.Open();
+
+                using (var command = new SQLiteCommand(courseSQL, DB))
+                {
+                    var result = command.ExecuteReader();
+
+                    while (result.Read())
+                    {
+                        var course = new Course();
+                        course.ID = (long)result[nameof(course.ID)];
+                        course.Name = result[nameof(course.Name)].ToString();
+                        course.CalculateGrades();
+                        return course;
+                    }
+                }
+            }
+            return null;
+
+        }
+
         public void CalculateGrades()
         {
             var connection = $"Data Source=courses.sqlite";
