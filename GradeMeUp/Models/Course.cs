@@ -18,7 +18,7 @@ namespace GradeMeUp.Models
 
         public static List<Course> All()
         {
-            var connection = $"Data Source=courses.sqlite";
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
             string allStudents = "SELECT * FROM Courses";
 
             using (var DB = new SQLiteConnection(connection))
@@ -51,7 +51,7 @@ namespace GradeMeUp.Models
         {
             if (ID != null)
             {
-                var connection = $"Data Source=courses.sqlite";
+                var connection = $"Data Source=courses.sqlite;foreign keys=true;";
                 string allStudents = $"SELECT Assignments.ID, Assignments.Name, Assignments.AssignmentType Assignments.Grade, Assignments.PointsPossible FROM Courses INNER JOIN Assignment ON Courses.ID = Assignments.CourseID WHERE CourseID = {ID}; ";
 
                 using (var DB = new SQLiteConnection(connection))
@@ -88,7 +88,7 @@ namespace GradeMeUp.Models
 
         public static Course Find(long id)
         {
-            var connection = $"Data Source=courses.sqlite";
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
             var courseSQL = $"SELECT * FROM Courses WHERE ID = {id}";
 
             using (var DB = new SQLiteConnection(connection))
@@ -115,8 +115,8 @@ namespace GradeMeUp.Models
 
         public void CalculateGrades()
         {
-            var connection = $"Data Source=courses.sqlite";
-            string allStudents = $"SELECT SUM(Assignments.Grade) AS Grade, SUM(Assignments.PointsPossible) AS PointsPossible FROM Courses INNER JOIN Assignments ON Courses.ID = Assignments.CourseID WHERE CourseID = {ID};";
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
+            string allStudents = $"SELECT ROUND(SUM(Assignments.Grade) * 1.0 / SUM(Assignments.PointsPossible), 2) * 100 AS Grade, SUM(Assignments.PointsPossible) AS PointsPossible FROM Courses INNER JOIN Assignments ON Courses.ID = Assignments.CourseID WHERE CourseID = {ID};";
 
             using (var DB = new SQLiteConnection(connection))
             {
@@ -138,7 +138,7 @@ namespace GradeMeUp.Models
                         }
                         else
                         {
-                            Grade = (long)grade;
+                            Grade = Convert.ToInt64(grade);
                         }
 
 

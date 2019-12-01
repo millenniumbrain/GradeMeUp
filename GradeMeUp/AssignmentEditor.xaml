@@ -14,13 +14,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="45"></RowDefinition>
             <RowDefinition Height="1.5*"></RowDefinition>
-            <RowDefinition Height="1.5*"></RowDefinition>
-            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="StudentEditorTitle" HorizontalAlignment="Left" Margin="41,10,0,7" TextWrapping="Wrap" Text="Create New Assignment" VerticalAlignment="Center" FontSize="16" Height="28"/>
-        <Label x:Name="label" Content="Name" HorizontalAlignment="Left" Margin="41,10,0,3" Grid.Row="1" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="35"/>
-        <Label x:Name="label_Copy" Content="Points Possible" HorizontalAlignment="Left" Margin="41,10,0,5" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="33"/>
-        <TextBox x:Name="textBox" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="16,10,0,7" Grid.Row="1" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="264"/>
-        <TextBox x:Name="textBox_Copy" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="16,10,0,7" Grid.Row="2" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="264" />
+        <TextBlock x:Name="AssignmentEditorTitle" HorizontalAlignment="Left" Margin="41,10,0,7" TextWrapping="Wrap" Text="Create New Assignment" VerticalAlignment="Center" FontSize="16" Height="28"/>
+        <Label x:Name="label" Content="Name" HorizontalAlignment="Left" Margin="48,7,0,8" Grid.Row="1" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="34"/>
+        <TextBox x:Name="AssignmentName" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="16,10,0,7" Grid.Row="1" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="264"/>
+        <Label x:Name="label_Copy" Content="Points Possible" HorizontalAlignment="Left" Margin="41,16,0,15" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="34"/>
+        <TextBox x:Name="AssignmentPointsPossible" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="16,10,0,7" Grid.Row="2" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="264" />
+        <Label x:Name="label_Copy1" Content="Grade" HorizontalAlignment="Left" Margin="41,19,0,14" Grid.Row="3" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="32"/>
+        <TextBox x:Name="AssignmentGrade" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="16,19,0,12" Grid.Row="3" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="264" />
+        <Label x:Name="label_Copy2" Content="Select Course" HorizontalAlignment="Left" Margin="41,21,0,11" Grid.Row="4" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="33"/>
+        <ComboBox x:Name="SelectAssignmentCourse" Grid.Column="1" HorizontalAlignment="Left" Margin="16,12,0,0" Grid.Row="4" VerticalContentAlignment="Center" Width="264" Height="31" SelectedIndex="0">
+            <ComboBoxItem>None</ComboBoxItem>
+        </ComboBox>
+        <Button x:Name="AssignmentEditorOkButton" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="344,81,0,0" Grid.Row="5" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="AssignmentEditorCancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="443,81,0,0" Grid.Row="5" VerticalAlignment="Top" Width="76"/>
     </Grid>
 </Window>

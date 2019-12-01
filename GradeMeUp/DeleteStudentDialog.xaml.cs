@@ -22,8 +22,9 @@ namespace GradeMeUp
     public partial class DeleteStudentDialog : Window
     {
         Student StudentDeleteInfo { get; set; }
-        public delegate void DataChangedEventHandler(object sender, EventArgs e);
         public event DataChangedEventHandler DataChanged;
+        public delegate void DataChangedEventHandler(object sender, EventArgs e);
+
         public DeleteStudentDialog(Student student)
         {
             InitializeComponent();
@@ -36,18 +37,13 @@ namespace GradeMeUp
 
         private void StudentDeleteOK_Click(object sender, RoutedEventArgs e)
         {
-            var connection = new SQLiteConnection("Data Source=courses.sqlite");
+            var connection = new SQLiteConnection("Data Source=courses.sqlite;foreign keys=true;");
 
             var DB = new DBConnection(connection);
             var entryRemoved = DB.Table("Students").Delete(StudentDeleteInfo.ID);
             if (entryRemoved)
             {
-                DataChangedEventHandler handler = DataChanged;
-
-                if (handler != null)
-                {
-                    handler(this, new EventArgs());
-                }
+                DataChanged?.Invoke(this, new EventArgs());
             }
         }
 

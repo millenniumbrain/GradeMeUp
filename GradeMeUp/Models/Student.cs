@@ -27,7 +27,7 @@ namespace GradeMeUp.Models
 
         public static List<Student> All()
         {
-            var connection = $"Data Source=courses.sqlite";
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
             string allStudents = "SELECT * FROM students";
 
             using (var DB = new SQLiteConnection(connection))
@@ -68,7 +68,7 @@ namespace GradeMeUp.Models
 
         private List<Course> GetCourses()
         {
-            var connection = $"Data Source=courses.sqlite";
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
             string associatedCourse = $"SELECT CourseID FROM CoursesStudents WHERE StudentID = {ID};";
             var courses = new List<Course>();
             using (var DB = new SQLiteConnection(connection))
@@ -77,29 +77,52 @@ namespace GradeMeUp.Models
                 using (var command = new SQLiteCommand(associatedCourse, DB))
                 {
                     var result = command.ExecuteReader();
-                    try
+                    while (result.Read())
                     {
-                        while (result.Read())
+                        long courseID = 0L;
+                        if (result["CourseID"] == DBNull.Value)
                         {
-                            long courseID = 0L;
-                            if (result["CourseID"] == DBNull.Value)
-                            {
-                                courseID = 0L;
-                            }
-                            else
-                            {
-                                courseID = (long)result["CourseID"];
-                            }
-                            var course = Course.Find(courseID);
-                            courses.Add(course);
+                            courseID = 0L;
                         }
-                    } 
-                    catch (IndexOutOfRangeException ex)
-                    {
-                        return new List<Course>();
+                        else
+                        {
+                            courseID = (long)result["CourseID"];
+                        }
+                        var course = Course.Find(courseID);
+                        courses.Add(course);
                     }
                 }
                return courses;
+            }
+        }
+
+        private List<Course> GetAssignments()
+        {
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
+            string associatedCourse = $"SELECT CourseID FROM CoursesStudents WHERE StudentID = {ID};";
+            var courses = new List<Course>();
+            using (var DB = new SQLiteConnection(connection))
+            {
+                DB.Open();
+                using (var command = new SQLiteCommand(associatedCourse, DB))
+                {
+                    var result = command.ExecuteReader();
+                    while (result.Read())
+                    {
+                        long courseID = 0L;
+                        if (result["CourseID"] == DBNull.Value)
+                        {
+                            courseID = 0L;
+                        }
+                        else
+                        {
+                            courseID = (long)result["CourseID"];
+                        }
+                        var course = Course.Find(courseID);
+                        courses.Add(course);
+                    }
+                }
+                return courses;
             }
         }
     }

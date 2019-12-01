@@ -84,14 +84,21 @@
     <Compile Include="AssignmentEditor.xaml.cs">
       <DependentUpon>AssignmentEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AssignmentType.cs" />
+    <Compile Include="Constants\AssignmentType.cs" />
     <Compile Include="CourseEditor.xaml.cs">
       <DependentUpon>CourseEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteAssignmentDialog.xaml.cs">
+      <DependentUpon>DeleteAssignmentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteCourseDialog.xaml.cs">
+      <DependentUpon>DeleteCourseDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="DeleteStudentDialog.xaml.cs">
       <DependentUpon>DeleteStudentDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Gender.cs" />
+    <Compile Include="Constants\Gender.cs" />
+    <Compile Include="Generators\AssignmentStudentGenerator.cs" />
     <Compile Include="Generators\Generator.cs" />
     <Compile Include="Generators\StudentCourseGenerator.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -99,6 +106,7 @@
     <Compile Include="Generators\AssignmentGenerator.cs" />
     <Compile Include="Generators\CourseGenerator.cs" />
     <Compile Include="Generators\StudentGenerator.cs" />
+    <Compile Include="Models\AssignmentStudent.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseStudents.cs" />
     <Compile Include="Models\DBConnection.cs" />
@@ -111,6 +119,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CourseEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteAssignmentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteCourseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,8 +180,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\assignments.sql" />
+    <Content Include="Scripts\assignment_students.sql" />
     <Content Include="Scripts\courses_students.sql" />
-    <Content Include="Scripts\assignment_types.sql" />
     <Content Include="Scripts\courses.sql" />
     <Content Include="Scripts\students.sql" />
   </ItemGroup>

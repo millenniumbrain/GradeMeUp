@@ -28,7 +28,6 @@ namespace GradeMeUp
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private class AssignmentTypeListItem
         {
             public int AssigntmentType { get; set; }
@@ -41,19 +40,21 @@ namespace GradeMeUp
 
             DBSetup.MigrateDB();
 
-            var writeConnection = $"Data Source=courses.sqlite";
-            var DB = new SQLiteConnection(writeConnection);
+            var writeConnection = $"Data Source=courses.sqlite;foreign keys=true;";
+            using (var DB = new SQLiteConnection(writeConnection)) 
+            {
 
-            var newStudents = new StudentGenerator(DB);
-            var newCourses = new CourseGenerator(DB);
-            var newAssignments = new AssignmentGenerator(DB);
-            var newCourseStudents = new CourseStudentGenerator(DB);
+                var newStudents = new StudentGenerator(DB);
+                var newCourses = new CourseGenerator(DB);
+                var newAssignments = new AssignmentGenerator(DB);
+                var newCourseStudents = new CourseStudentGenerator(DB);
 
-            
-            newCourses.Generate(10);
-            newStudents.Generate(10);
-            newAssignments.Generate(10);
-            newCourseStudents.Generate(10);
+
+                newCourses.Generate(10);
+                newStudents.Generate(10);
+                newAssignments.Generate(10);
+                newCourseStudents.Generate(10);
+            }
 
             var students = Student.All();
             var courses = Course.All();
@@ -72,8 +73,14 @@ namespace GradeMeUp
 
         private void StudentsListView_DoubleClick(object sender, MouseEventArgs e)
         {
+            var selectedIndex = StudentsListBoxView.SelectedIndex;
             var studentsListBox = e.Source as ListBoxItem;
             var item = ((FrameworkElement)e.OriginalSource).DataContext as Student;
+            var selectedStudent = StudentsListBoxView.Items.GetItemAt(selectedIndex) as Student;
+            var studentEditor = new StudentEditor(selectedStudent);
+            studentEditor.Owner = Application.Current.MainWindow;
+            studentEditor.Show();
+
         }
 
         private void StudentsListView_SelectionChanged(object sender, RoutedEventArgs e)
@@ -148,6 +155,9 @@ namespace GradeMeUp
 
         private void RemoveStudent_DataChanged(object sender, EventArgs e)
         {
+            var window = sender as Window;
+            StudentsListBoxView.ItemsSource = Student.All();
+            window.Close();
             MessageBox.Show("Somthing has happened!", "Parent");
         }
 
@@ -160,12 +170,6 @@ namespace GradeMeUp
                 var studentEditor = new StudentEditor();
                 studentEditor.Show();
             } 
-            else
-            {
-                var selectedStudent = StudentsListBoxView.Items.GetItemAt(selectedIndex) as Student;
-                var studentEditor = new StudentEditor(selectedStudent);
-                studentEditor.Show();
-            }
         }
     }
 }

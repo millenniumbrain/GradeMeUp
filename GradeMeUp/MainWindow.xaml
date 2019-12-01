@@ -12,10 +12,6 @@
         </DataTemplate>
     </Window.Resources>
     <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
-        <TabItem Header="Home">
-            <Grid Background="#FFE5E5E5" Margin="-2,-3,-2,0">
-            </Grid>
-        </TabItem>
         <TabItem Header="Students">
             <Grid x:Name="StudentsView" Background="#FFE5E5E5" Margin="-2,-2,-2,-2">
                 <Grid.ColumnDefinitions>
@@ -68,7 +64,7 @@
                                 <GridViewColumn Width="100" DisplayMemberBinding="{Binding ID}" Header="Course ID"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Course Name"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding TotalPoints}" Header="Total Points" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Grade}" Header="Grade"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Grade, StringFormat={}{0}%}" Header="Grade" HeaderStringFormat="" />
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -100,13 +96,7 @@
                         <TextBlock>Homework</TextBlock>
                     </ListBoxItem>
                     <ListBoxItem Tag="2">
-                        <TextBlock>Quizzes</TextBlock>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="3">
                         <TextBlock>Tests</TextBlock>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="4">
-                        <TextBlock>Extra Credit</TextBlock>
                     </ListBoxItem>
                 </ListBox>
                 <ListView Grid.Row="0" Grid.Column="1" x:Name="AssignmentsListView" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" SizeChanged="AssignmentsListView_SizeChanged">

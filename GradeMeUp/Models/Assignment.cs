@@ -28,7 +28,7 @@ namespace GradeMeUp
 
         public static List<Assignment> GetAssignmentsByType(int assignmentType)
         {
-            var connection = $"Data Source=courses.sqlite";
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
             string allAssignments;
             if (assignmentType == 0)
             {
@@ -83,7 +83,7 @@ namespace GradeMeUp
 
         public static List<Assignment> All()
         {
-            var connection = $"Data Source=courses.sqlite";
+            var connection = $"Data Source=courses.sqlite;foreign keys=true;";
             string allStudents = "SELECT * FROM Assignments";
 
             using (var DB = new SQLiteConnection(connection))
