@@ -81,7 +81,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AssignmentEditor.xaml.cs">
+      <DependentUpon>AssignmentEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AssignmentType.cs" />
+    <Compile Include="CourseEditor.xaml.cs">
+      <DependentUpon>CourseEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteStudentDialog.xaml.cs">
+      <DependentUpon>DeleteStudentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gender.cs" />
     <Compile Include="Generators\Generator.cs" />
     <Compile Include="Generators\StudentCourseGenerator.cs" />
@@ -94,6 +103,21 @@
     <Compile Include="Models\CourseStudents.cs" />
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="StudentEditor.xaml.cs">
+      <DependentUpon>StudentEditor.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AssignmentEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CourseEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteStudentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,6 +130,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StudentEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

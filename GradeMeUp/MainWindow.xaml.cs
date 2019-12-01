@@ -115,9 +115,9 @@ namespace GradeMeUp
 
             // take into account vertical scrollbar
             var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth; 
-            var col1 = 0.70;
-            var col2 = 0.15;
-            var col3 = 0.15;
+            var col1 = 0.60;
+            var col2 = 0.20;
+            var col3 = 0.20;
 
             gridView.Columns[0].Width = workingWidth * col1;
             gridView.Columns[1].Width = workingWidth * col2;
@@ -127,6 +127,45 @@ namespace GradeMeUp
         private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void RemoveStudent_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedIndex = StudentsListBoxView.SelectedIndex;
+
+            if (selectedIndex == -1)
+            {
+                return;
+            }
+            else
+            {
+                var selectedStudent = StudentsListBoxView.Items.GetItemAt(selectedIndex) as Student;
+                var deleteStudent = new DeleteStudentDialog(selectedStudent);
+                deleteStudent.DataChanged += RemoveStudent_DataChanged;
+                deleteStudent.Show();
+            }
+        }
+
+        private void RemoveStudent_DataChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Somthing has happened!", "Parent");
+        }
+
+        private void CreateStudent_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedIndex = StudentsListBoxView.SelectedIndex;
+
+            if (selectedIndex == -1)
+            {
+                var studentEditor = new StudentEditor();
+                studentEditor.Show();
+            } 
+            else
+            {
+                var selectedStudent = StudentsListBoxView.Items.GetItemAt(selectedIndex) as Student;
+                var studentEditor = new StudentEditor(selectedStudent);
+                studentEditor.Show();
+            }
         }
     }
 }

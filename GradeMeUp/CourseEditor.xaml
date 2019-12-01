@@ -1,0 +1,25 @@
+﻿<Window x:Class="GradeMeUp.CourseEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GradeMeUp"
+        mc:Ignorable="d"
+        Title="Course Editor" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="StudentEditorTitle" HorizontalAlignment="Left" Margin="41,10,0,0" TextWrapping="Wrap" Text="Create New Course" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="label" Content="Course Name" HorizontalAlignment="Left" Margin="41,10,0,3" Grid.Row="1" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="35"/>
+        <TextBox x:Name="textBox" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="16,10,0,7" Grid.Row="1" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="264"/>
+        <Button x:Name="button" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="454,294,0,0" Grid.Row="2" VerticalAlignment="Top" Width="90" Height="25"/>
+        <Button x:Name="button_Copy" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="359,294,0,0" Grid.Row="2" VerticalAlignment="Top" Width="90" Height="25"/>
+    </Grid>
+</Window>

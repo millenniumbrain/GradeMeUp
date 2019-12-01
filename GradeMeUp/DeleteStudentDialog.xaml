@@ -1,0 +1,15 @@
+﻿<Window x:Class="GradeMeUp.DeleteStudentDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GradeMeUp"
+        mc:Ignorable="d"
+        Title="DeleteStudentDialog" Height="250" Width="564.667">
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" >
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="Are you sure you wish to delete the following student?" Width="303" Margin="126,76,128,112"/>
+        <Button x:Name="StudentDeleteOK" Content="OK" HorizontalAlignment="Left" Margin="179,156,0,0" VerticalAlignment="Top" Width="75" Click="StudentDeleteOK_Click"/>
+        <Button x:Name="StudentDeleteCancel" Content="Cancel" HorizontalAlignment="Left" Margin="290,156,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock x:Name="StudentDeleteName" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="StudentName" Width="303" Margin="126,108,128,80"/>
+    </Grid>
+</Window>

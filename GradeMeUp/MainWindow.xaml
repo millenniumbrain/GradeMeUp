@@ -33,9 +33,7 @@
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition x:Name="StudentsListContainer" Height="9.3*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Border BorderBrush="DarkGray" BorderThickness="0 0 1.5 0">
-                        <Label Grid.Row="0" Grid.Column="0" x:Name="label" Content="Students" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  VerticalAlignment="Center"/>
-                    </Border>
+                    <Label Grid.Row="0" Grid.Column="0" x:Name="label" Content="Students" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
                     <ListBox Grid.Row="1" 
                              Grid.Column="0" 
                              x:Name="StudentsListBoxView" 
@@ -52,6 +50,8 @@
                             </Style>
                         </ListBox.ItemContainerStyle>
                     </ListBox>
+                    <Button x:Name="button" Content="+" HorizontalAlignment="Left" Margin="90,3,0,2" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="23" Height="25" ToolTip="Add Student" Click="CreateStudent_Click"/>
+                    <Button x:Name="butto2n" Content="-" HorizontalAlignment="Left" Margin="121,3,0,2" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="23" Height="25" ToolTip="Remove Student" Click="RemoveStudent_Click"/>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -76,7 +76,7 @@
             </Grid>
         </TabItem>
         <TabItem Header="Courses">
-            
+
         </TabItem>
         <TabItem Header="All Assignments">
             <Grid>

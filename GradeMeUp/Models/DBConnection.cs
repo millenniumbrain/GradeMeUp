@@ -80,5 +80,32 @@ namespace GradeMeUp.Models
             }
             return false;
         }
+
+        public bool Delete(long id)
+        {
+            string deleteString = $"DELETE FROM {TableName} WHERE ID = {id}";
+            if (Connection != null)
+            {
+                using (Connection)
+                {
+                    Connection.Open();
+                    using (var command = new SQLiteCommand(deleteString, Connection))
+                    {
+                        var rows = command.ExecuteNonQuery();
+
+                        if (rows == 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }
