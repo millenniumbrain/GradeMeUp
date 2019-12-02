@@ -8,7 +8,7 @@
         Title="Delete Assignment" Height="179" Width="443.167">
     <Grid  HorizontalAlignment="Left" VerticalAlignment="Center" Width="433" Height="202" Margin="0,0,0,-1">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Text="Are you sure you wish to delete the following student?" Width="390" Margin="33,57,10,130"/>
-        <Button x:Name="StudentDeleteOK" Content="OK" HorizontalAlignment="Left" Margin="100,127,0,0" VerticalAlignment="Top" Width="75" Click="StudentDeleteOK_Click"/>
+        <Button x:Name="StudentDeleteOK" Content="OK" HorizontalAlignment="Left" Margin="100,127,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="StudentDeleteCancel" Content="Cancel" HorizontalAlignment="Left" Margin="240,127,0,0" VerticalAlignment="Top" Width="76"/>
         <TextBlock x:Name="StudentDeleteName" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="AssignmentName" Width="302" Margin="54,84,77,103"/>
     </Grid>

@@ -31,5 +31,25 @@ namespace GradeMeUp
             }
         }
 
+        private void StudentsCourseList_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var listView = sender as ListView;
+            var gridView = listView.View as GridView;
+
+            // take into account vertical scrollbar
+            var workingWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth;
+            var col1 = 0.25;
+            var col2 = 0.75;
+
+            gridView.Columns[0].Width = workingWidth * col1;
+            gridView.Columns[1].Width = workingWidth * col2;
+
+        }
+
+        private void StudentAssignmentList_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+        }
+
     }
 }

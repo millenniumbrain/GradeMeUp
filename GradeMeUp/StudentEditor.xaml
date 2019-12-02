@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GradeMeUp"
         mc:Ignorable="d"
-        Title="Student Editor" Height="681.667" Width="800">
+        Title="Student Editor" Height="681.667" Width="859.333">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -29,33 +29,33 @@
             <ComboBoxItem>Select A Course</ComboBoxItem>
         </ComboBox>
         <Label x:Name="label_Copy2" Content="Select Courses" HorizontalAlignment="Left" Margin="59,10,0,90" Grid.Row="3" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="32"/>
-        <ListView x:Name="listView_Copy" Grid.Column="1" HorizontalAlignment="Left" Height="113" Margin="16,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="503">
+        <ListView x:Name="StudentCouseList" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Height="99" Margin="16,27,10,0" Grid.Row="4" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Course ID"/>
-                    <GridViewColumn Header="Course Name"/>
+                    <GridViewColumn Width="100" Header="Course ID"/>
+                    <GridViewColumn Width="300" Header="Course Name"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Label x:Name="label_Copy3" Content="Assigned Courses" HorizontalAlignment="Left" Margin="48,10,0,109" Grid.Row="4" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="32"/>
         <Label x:Name="label_Copy4" Content="Student Assignments" HorizontalAlignment="Left" Margin="41,10,0,110" Grid.Row="5" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="32" RenderTransformOrigin="0.507,3.031" Width="165"/>
-        <ListView x:Name="listView" Grid.Column="1" HorizontalAlignment="Left" Height="113" Margin="16,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="503">
+        <ListView x:Name="StudentAssignmentList" Grid.Column="1" HorizontalAlignment="Stretch" Height="113" Margin="16,10,10,0" Grid.Row="5" VerticalAlignment="Top" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" />
-                    <GridViewColumn Header="Assignment Type" />
-                    <GridViewColumn Header="Points Possible" />
-                    <GridViewColumn Header="Grade" />
+                    <GridViewColumn Width="175" Header="Name" />
+                    <GridViewColumn Width="150" Header="Assignment Type" />
+                    <GridViewColumn Width="150" Header="Points Possible" />
+                    <GridViewColumn Width="65"  Header="Grade" />
                 </GridView>
             </ListView.View>
         </ListView>
         <Button x:Name="button" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="369,10,0,0" Grid.Row="6" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button_Copy" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="457,10,0,0" Grid.Row="6" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1" Content="Add" HorizontalAlignment="Left" Margin="67,47,0,0" Grid.Row="5" VerticalAlignment="Top" Width="94" Height="27"/>
-        <Button x:Name="button2" Content="Edit" HorizontalAlignment="Left" Margin="67,79,0,0" Grid.Row="5" VerticalAlignment="Top" Width="94" Height="28"/>
-        <Button x:Name="button3" Content="Remove" HorizontalAlignment="Left" Margin="67,112,0,0" Grid.Row="5" VerticalAlignment="Top" Width="94" Height="27" RenderTransformOrigin="0.493,0.778"/>
         <Button x:Name="button1_Copy" Content="Add" HorizontalAlignment="Left" Margin="67,49,0,0" Grid.Row="3" VerticalAlignment="Top" Width="94" Height="27"/>
         <Button x:Name="button3_Copy" Content="Remove" HorizontalAlignment="Left" Margin="67,81,0,0" Grid.Row="3" VerticalAlignment="Top" Width="94" Height="27" RenderTransformOrigin="0.493,0.778"/>
+        <Button x:Name="button_Copy" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="457,10,0,0" Grid.Row="6" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="AddStudentAssignment" Content="Add" HorizontalAlignment="Left" Margin="67,47,0,0" Grid.Row="5" VerticalAlignment="Top" Width="94" Height="27"/>
+        <Button x:Name="EditStudentAssignment" Content="Edit" HorizontalAlignment="Left" Margin="67,79,0,0" Grid.Row="5" VerticalAlignment="Top" Width="94" Height="28"/>
+        <Button x:Name="RemoveStudentAssignment" Content="Remove" HorizontalAlignment="Left" Margin="67,112,0,0" Grid.Row="5" VerticalAlignment="Top" Width="94" Height="27" RenderTransformOrigin="0.493,0.778"/>
 
     </Grid>
 </Window>

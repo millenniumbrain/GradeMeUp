@@ -64,7 +64,7 @@
                                 <GridViewColumn Width="100" DisplayMemberBinding="{Binding ID}" Header="Course ID"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Course Name"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding TotalPoints}" Header="Total Points" />
-                                <GridViewColumn DisplayMemberBinding="{Binding Grade, StringFormat={}{0}%}" Header="Grade" HeaderStringFormat="" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Grade, StringFormat={}{0}%}" Header="Grade" />
                             </GridView>
                         </ListView.View>
                     </ListView>
